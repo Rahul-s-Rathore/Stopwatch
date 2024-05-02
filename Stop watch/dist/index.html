@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StopWatch</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="flex justify-center items-center h-screen bg-slate-950 transition-all duration-300">
+        <div id="container" class="text-white max-w-screen-lg m-5">
+            <diV id="time">
+                <span id="hour" class=" lg:text-[160px] text-[70px] md:text-[100px]">00</span>
+                <span class="font-bold text-xl mr-7">Hr</span>
+                
+                <span id="min" class=" lg:text-[160px] text-[70px] md:text-[100px]">00</span>
+                <span class="font-bold text-xl mr-7">Min</span>
+
+                <span id="sec" class=" lg:text-[160px] text-[70px] md:text-[100px]">00</span>
+                <span class="font-bold text-xl mr-7">Sec</span>
+
+                <span id="count" class=" lg:text-[160px] text-[70px] md:text-[100px]">00</span>
+
+            </div>
+            <div id="btn-container" class="mt-7 text-center w-full">
+                <button class="px-5 py-2  bg-green-400 rounded-md text-xl mr-28 hover:opacity-80s " onclick="start()" ondblclick="stop() ">Start</button>
+                <button class="px-5 py-2 bg-blue-500 rounded-md text-xl mr-28 hover:opacity-80s " onclick="stop() " ondblclick="start()">Stop</button>
+                <button class="px-5 py-2 bg-red-600 rounded-md text-xl  hover:opacity-80s " onclick="reset()">Reset</button>
+            </div>
+        </div>
+
+        <script>
+
+            let hr=0;
+            let min=0;
+            let sec=0;
+            let count=0;
+            let timer = false;
+
+            function start(){
+                timer = true;
+                stopWatch();
+            }
+            function stop(){
+                timer = false;
+            }
+            function reset(){
+                timer = false;
+                hr=0;
+                min=0;
+                sec=0;
+                count=0;
+                document.getElementById("hour").innerHTML="00";
+                document.getElementById("min").innerHTML="00";
+                document.getElementById("sec").innerHTML="00";
+                document.getElementById("count").innerHTML="00";
+
+            }
+            function stopWatch(){
+
+                if(timer==true){
+                    count=count+1;
+                    if(count==100){
+                sec=sec+1;
+                count=0;
+
+            }
+            if(sec==60){
+                min=min+1;
+                sec=0;
+
+            }
+            if(min==60){
+                hr=hr+1;
+                min=0;
+                sec=0;
+
+            }
+
+            var hrString = hr;
+            var minString = min;
+            var secString = sec;
+            var countString = count;
+            if(hr<10){
+                hrString = "0"+hrString;
+            }
+            if(min<10){
+                minString = "0"+minString;
+            }
+            if(sec<10){
+                secString = "0"+secString;
+            }
+            if(count<10){
+                countString = "0"+countString;
+            }
+                    document.getElementById("count").innerHTML=countString;
+                    document.getElementById("sec").innerHTML=secString;
+                    document.getElementById("min").innerHTML=minString;
+                    document.getElementById("hour").innerHTML=hrString;
+
+
+
+                    setTimeout("stopWatch()", 10);
+                   
+                }
+          
+          
+          
+            
+        }
+            
+        </script>
+</body>
+</html>
